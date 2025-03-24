@@ -7,6 +7,9 @@
   <parameter name="version">
     <description>Specify version to be used in tarball. Defaults to automatically detected value formatted by versionformat parameter. Disabling the additional version string can be done by setting it to "_none_" string.</description>
   </parameter>
+  <parameter name="delete">
+    <description></description>
+  </parameter>
   <parameter name="versionprefix">
     <description>Specify a base version as prefix.</description>
   </parameter>

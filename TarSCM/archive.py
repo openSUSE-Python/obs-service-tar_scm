@@ -196,6 +196,7 @@ class ObsCpio(BaseArchive):
 class Tar(BaseArchive):
     def create_archive(self, scm_object, **kwargs):
         """Create a tarball of repodir in destination directory."""
+        logging.debug('scm_object: %s (%s)' % (scm_object, dir(scm_object)))
         (workdir, topdir) = os.path.split(scm_object.arch_dir)
 
         args                = kwargs['cli']
@@ -204,6 +205,7 @@ class Tar(BaseArchive):
         extension           = (args.extension or 'tar')
         exclude             = args.exclude
         include             = args.include
+        delete              = args.delete
         package_metadata    = args.package_meta
         timestamp           = self.helpers.get_timestamp(
             scm_object,
@@ -260,6 +262,11 @@ class Tar(BaseArchive):
                         tar.add(entry, exclude=tar_exclude)
                     files_added[entry] = True
                     logging.debug("Added filtered file: %s", entry)
+
+        # The archive was successfully created
+        if delete:
+            logging.debug("Removing source archive: %s", scm_object)
+            # os.unlink(scm_object)
 
         self.archivefile    = tar.name
 

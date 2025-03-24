@@ -221,6 +221,8 @@ class Cli():
         parser.add_argument('--locale',
                             help='DEPRECATED - Please use "encoding" instead.'
                                  ' Set locale while service run')
+        parser.add_argument('--delete', default = False,
+                            help='delete source archive afterwards')
         parser.add_argument('--encoding',
                             help='set encoding while service run')
         parser.add_argument('--use-obs-gbp', default = False,
@@ -270,6 +272,7 @@ class Cli():
         args.changesgenerate      = bool(args.changesgenerate == 'enable')
         args.package_meta         = bool(args.package_meta == 'yes')
         args.sslverify            = bool(args.sslverify != 'disable')
+        args.delete               = bool(args.delete)
         args.use_obs_scm          = bool(args.use_obs_scm)
         args.use_obs_gbp          = bool(args.use_obs_gbp)
         args.latest_signed_commit = bool(args.latest_signed_commit)
